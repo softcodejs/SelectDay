@@ -1,0 +1,32 @@
+.main_content{
+    width: 100%;
+    height: 634px;
+}
+
+#clouds {
+    position: fixed;
+    bottom: -160px;
+    left: -200px;
+    z-index: -10;
+    width: 1800px;
+  }
+
+  /* Responsive Styles */
+  @media screen and (max-width: 767px) {
+    .card-container > *:not(.circle-link) ,
+    .terminal {
+      width: 100%;
+    }
+
+    svg#rocket-smoke {
+      right: 120px;
+      transform: rotate(-5deg);
+    }
+  }
+
+  @media screen and (max-width: 575px) {
+    svg#rocket-smoke {
+      display: none;
+      visibility: hidden;
+    }
+  }
