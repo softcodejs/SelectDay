@@ -1,0 +1,52 @@
+  <div class="content">
+
+    <div Class="title">
+        <h1>Welcome to SelectDay!</h1>
+    </div>
+
+    <div Class="content_login">
+      <h4 Class="info_text">Enter your credentials to register</h4>
+      <form class="form_login">
+
+        <mat-form-field class="example-full-widt">
+          <mat-label>Name</mat-label>
+          <input type="text" matInput [formControl]="nameFormControl">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-widt">
+          <mat-label>Email</mat-label>
+          <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                 placeholder="Ex. pat@example.com">
+          <mat-error Class="label_error" *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+            Please enter a valid email address
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="example-full-widt">
+          <mat-label>Enter your phone number</mat-label>
+          <input type="text" matInput [formControl]="phoneFormControl" [errorStateMatcher]="matcher">
+          <mat-error Class="label_error" *ngIf="phoneFormControl.hasError('email') && !phoneFormControl.hasError('required')">
+            Please enter a valid phone number
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Enter your password</mat-label>
+          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passFormControl">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+
+        <button class="button_form" mat-fab extended color="primary">          
+          Register your account
+          <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+<p>{{emailFormControl.value}}</p>
+<p>{{passFormControl.value}}</p>
+      </form>
+
+    </div>   
+    
+  </div>
+  
