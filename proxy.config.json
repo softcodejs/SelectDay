@@ -1,0 +1,20 @@
+{
+  "/api/*": {
+    "target": "https://localhost:7265/",
+      "secure": false,
+      "logLevel": "debug"
+  },
+
+  "/resources/*": {
+    "target": "https://localhost:7265/",
+    "secure": false,
+    "logLevel": "debug"
+  },
+  
+
+  "/app_resources/*": {
+    "target": "https://localhost:7265/",
+    "secure": false,
+    "logLevel": "debug"
+  }
+}

@@ -16,6 +16,18 @@
     color: #61605b;
   }
 
+  .mat-mdc-progress-bar, 
+  .mdc-linear-progress, 
+  .mat-primary, 
+  .mdc-linear-progress--animation-ready{
+    bottom: 20px;
+    width: 300px;
+  }
+
+  .mat-mdc-progress-bar{
+    --mdc-linear-progress-active-indicator-color: #41a11d !important;
+  }
+
   .info_text{
     font-size: 16px;
     line-height: 22px;
@@ -24,7 +36,8 @@
   }
 
   .content_login {
-    width: 50%;
+    width: 500px;
+    height: 480px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -64,6 +77,8 @@
   .button_form{
     --mdc-fab-container-color: #2d2f36;
     width: 80%;
+    margin-bottom: 50px;
+    top: 0px;
   }
 
    /* Responsive Styles */
