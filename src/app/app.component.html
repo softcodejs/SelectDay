@@ -1,4 +1,5 @@
 <app-spinner></app-spinner>
+<app-error-message></app-error-message>
 <div class="main_content">
   
 <svg id="clouds" xmlns="http://www.w3.org/2000/svg" width="2611.084" height="485.677" viewBox="0 0 2611.084 485.677">
@@ -8,8 +9,7 @@
 <div [ngClass]="'rout'" [@routeAnimations]="o
     && o.activatedRouteData['animation']">
     <router-outlet #o="outlet"></router-outlet>
-  </div>
-
+  </div>  
 </div>
 
 

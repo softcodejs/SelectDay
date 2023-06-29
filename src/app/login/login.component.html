@@ -48,21 +48,36 @@
 
     </div>   
 
-    <div *ngIf="!submitedform" Class="content_login">
-      <h4 Class="info_text">We send a verification code to your email</h4>
+    <div *ngIf="submitedform" Class="content_verify">
+      <h4 Class="info_text">We have sent an email to your mailbox</h4>
+      <div class="content_instructions">
+        <div Class="instructions">This action requires a mail verification, please check your mailbox and follow the instructions. Sent to:</div>
+      <div class="content_email">{{this.profile.email}}</div>
+      </div>
+      
 
-      <form name="bussinesType" [formGroup]="bussinesType" class="form_login">
+      <form name="formVerification" [formGroup]="formVerification" class="form_login">
 
         <mat-form-field class="example-full-widt">
           <mat-label>Verification code</mat-label>
           <input type="text" matInput formControlName="code">
+          <mat-error Class="label_error" *ngIf="formVerification.get('code')!.hasError('incorrect')">
+            Wrong code, please check email.
+          </mat-error>
         </mat-form-field>
 
-        <button class="button_form" mat-fab extended color="primary" [disabled]="!bussinesType.valid" (click)="getProfile()">          
-          Done and register your account
+        <button class="button_form verify" mat-fab extended color="primary" [disabled]="!formVerification.valid" (click)="verify()">          
+          Register your account
           <mat-icon>arrow_right_alt</mat-icon>
         </button>
+
+        <button class="button_cancel verify" mat-fab extended color="primary" (click)="Back()">          
+          Cancel / Back
+          <mat-icon>cancel</mat-icon>
+        </button>
       </form>
+
+      
 
     </div>  
     

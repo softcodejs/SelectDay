@@ -9,11 +9,14 @@ import { SpinnerInterceptor } from './shared/spinner.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { HttpErrorInterceptor } from './shared/interceptors/http-error-interceptor';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,
@@ -24,7 +27,8 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
     MatProgressBarModule
   ],
   providers: [
-    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: SpinnerInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })

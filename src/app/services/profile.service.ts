@@ -22,4 +22,11 @@ ProfileRegister(profile: Profile) {
         return this.http.get('https://localhost:7265/api/profile/get');
       }
 
+    SendEmail(email:string) {
+      return this.http.post('https://localhost:7265/api/profile/verification',
+          {          
+            email: email          
+          });
+      }
+
 }
