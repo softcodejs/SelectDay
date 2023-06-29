@@ -4,49 +4,67 @@
         <h1>Welcome to SelectDay!</h1>
     </div>
 
-    <div Class="content_login">
+    <mat-progress-bar class="progress_bar" color="#bbdefb" mode="determinate" value="{{progress}}"></mat-progress-bar>
+
+    <div *ngIf="!submitedform" Class="content_login">
       <h4 Class="info_text">Enter your credentials to register</h4>
-      <form class="form_login">
+
+      <form name="formlogin" [formGroup]="formlogin" class="form_login" >
 
         <mat-form-field class="example-full-widt">
           <mat-label>Name</mat-label>
-          <input type="text" matInput [formControl]="nameFormControl">
+          <input type="text" matInput formControlName="name">
         </mat-form-field>
 
         <mat-form-field class="example-full-widt">
           <mat-label>Email</mat-label>
-          <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                 placeholder="Ex. pat@example.com">
-          <mat-error Class="label_error" *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+          <input type="email" matInput formControlName="email" placeholder="Ex. pat@example.com">
+          <mat-error Class="label_error" *ngIf="formlogin.get('email')!.hasError('email')">
             Please enter a valid email address
           </mat-error>
         </mat-form-field>
 
         <mat-form-field class="example-full-widt">
           <mat-label>Enter your phone number</mat-label>
-          <input type="text" matInput [formControl]="phoneFormControl" [errorStateMatcher]="matcher">
-          <mat-error Class="label_error" *ngIf="phoneFormControl.hasError('email') && !phoneFormControl.hasError('required')">
+          <input type="text" matInput formControlName="phone">
+          <mat-error Class="label_error" *ngIf="formlogin.get('phone')!.hasError('required') && formlogin.get('phone')!.hasError('pattern')">
             Please enter a valid phone number
           </mat-error>
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>Enter your password</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" [formControl]="passFormControl">
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="pass">
           <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
 
-        <button class="button_form" mat-fab extended color="primary">          
-          Register your account
+        <button class="button_form" mat-fab extended color="primary" [disabled]="!formlogin.valid" (click)="addProfile()">          
+          Continue
           <mat-icon>arrow_right_alt</mat-icon>
         </button>
-<p>{{emailFormControl.value}}</p>
-<p>{{passFormControl.value}}</p>
       </form>
 
     </div>   
+
+    <div *ngIf="!submitedform" Class="content_login">
+      <h4 Class="info_text">We send a verification code to your email</h4>
+
+      <form name="bussinesType" [formGroup]="bussinesType" class="form_login">
+
+        <mat-form-field class="example-full-widt">
+          <mat-label>Verification code</mat-label>
+          <input type="text" matInput formControlName="code">
+        </mat-form-field>
+
+        <button class="button_form" mat-fab extended color="primary" [disabled]="!bussinesType.valid" (click)="getProfile()">          
+          Done and register your account
+          <mat-icon>arrow_right_alt</mat-icon>
+        </button>
+      </form>
+
+    </div>  
     
   </div>
   
