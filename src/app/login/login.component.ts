@@ -11,6 +11,7 @@ import { SpinnerService } from '../services/spinner.service';
 import { Router } from '@angular/router';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { Profile } from '../model/profile_m';
+import { MessageService } from '../services/message.service';
 
 @Component({
   selector: 'app-login',
@@ -27,13 +28,17 @@ import { Profile } from '../model/profile_m';
 })
 
 export class LoginComponent implements OnInit {
-  profile: any;
   title = 'SelectDay';
   hide = true;
   submitedform = false;
   progress = 50;
+  profile: any;
+  verificationCode: any;
 
-  constructor(private _formBuilder: FormBuilder, private _profileService: ProfileService, private router: Router){}
+  constructor(private _formBuilder: FormBuilder, 
+    private _profileService: ProfileService, 
+    private router: Router,
+    private messageError: MessageService){}
 
   formlogin = this._formBuilder.group({
   name: ['',Validators.compose([Validators.required])],
@@ -42,7 +47,7 @@ export class LoginComponent implements OnInit {
   pass: ['',Validators.compose([Validators.required])]
   });
 
-  bussinesType = this._formBuilder.group({
+  formVerification = this._formBuilder.group({
     code: ['',Validators.compose([Validators.required])],
     });
 
@@ -55,21 +60,30 @@ export class LoginComponent implements OnInit {
       this.progress = 100;
       this.profile  = new Profile(this.formlogin.value.name! , this.formlogin.value.email!, this.formlogin.value.phone!, this.formlogin.value.pass!);
       this.formlogin.reset();
+      this._profileService.SendEmail(this.profile.email).subscribe(response => {
+        this.verificationCode = response
+        console.log(response);
+      });
     } 
   }
 
-  getProfile(){      
-    this.submitedform = false;
-    this.progress = 50;
-    this.profile = null;
-    console.log(this.profile);    
-    //this.router.navigate(['/register']);           
+  verify(){      
+    if(this.formVerification.value.code! == this.verificationCode){
+      this.SendProfile();
+    } else {
+      this.formVerification.controls.code.setErrors({'incorrect': true });
+      ////error
+    }   
   }
 
   SendProfile(){
     this._profileService.ProfileRegister(this.profile).subscribe(response => {
-      
+      this.formVerification.reset();
     });
+  }
+
+  Back(){
+    this.submitedform = false;
   }
 
 }

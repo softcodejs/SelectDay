@@ -21,18 +21,21 @@
   .mat-primary, 
   .mdc-linear-progress--animation-ready{
     bottom: 20px;
-    width: 300px;
+    width: 420px;
   }
 
   .mat-mdc-progress-bar{
     --mdc-linear-progress-active-indicator-color: #41a11d !important;
+    width: 80%;
   }
 
   .info_text{
-    font-size: 16px;
+    font-size: 17px;
     line-height: 22px;
-    color: #8c8b88;
+    color: #5b5955;
     margin: 20px;
+    font-weight: bold;
+    text-align: center;
   }
 
   .content_login {
@@ -77,9 +80,57 @@
   .button_form{
     --mdc-fab-container-color: #2d2f36;
     width: 80%;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     top: 0px;
   }
+
+  .content_verify {
+    width: 80%;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    border-radius: 6px;
+    box-shadow: 0 2px 16px 0 rgba(33, 43, 54, 0.08), 0 0 0 1px rgba(6, 44, 82, 0.06);
+  }
+
+  .content_instructions{
+    width: 75%;
+    height: 480px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    text-align: center;
+    color: #31302e;
+  }
+
+  .content_email{
+    font-size: 17px;
+    line-height: 22px;
+    color: #5b5955;
+    margin: 20px;
+    font-weight: bold;
+    margin: 20px;
+  }
+
+  .label_error {
+    height: 30px !important;
+  }
+
+  .button_cancel{
+    color: firebrick;
+    --mdc-fab-container-color: #ffffff;
+    width: 80%;
+    margin-bottom: 20px;
+    top: 0px;
+  }
+
+  .mat-mdc-form-field-error{
+    font-size: 12px;
+  }
+
 
    /* Responsive Styles */
    @media screen and (max-width: 640px) {

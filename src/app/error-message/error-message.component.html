@@ -1,0 +1,32 @@
+<div id="displayed" [ngClass]="'blackbkg'" *ngIf="messageHolder.showBackground()">
+
+    <div [ngClass]="'fullscreen'" *ngIf="messageHolder.showMessage()">
+        <div  [ngClass]="'waitPanel'">
+          <!-- [@containerKeyboard]=currentState -->
+
+            <!-- <div *ngIf="showButton()" [ngClass]="'errorHeader'" (click)="close()">
+                <span [ngClass]="'errorHeaderText'">
+                  <img [ngClass]="'cart'" [src]="'/app_resources/images/icons/close-grey.svg'" />
+                </span>
+            </div> -->
+            <div [ngClass]="'errorImage'">
+                <img src="/app_resources/images/errors/{{messageHolder.imageName}}" (error)="getImgPlaceholder($event)" />
+            </div>
+            <div [ngClass]="'errorTitle'">
+                <span>{{ messageHolder.title }}</span>
+            </div>
+            <div [ngClass]="'errorDescription'">
+                <span>{{ messageHolder.message }}</span>
+            </div>
+            <div [ngClass]="'errorButton'" (click)="okContinue()" *ngIf="showButton()">
+                <span [ngClass]="'errorButtonText'">Ok, continuar</span>
+            </div>
+            <ng-template #divTransparent>
+                <div [ngClass]="'errorButtonTransparent'">
+
+                </div>
+            </ng-template>
+
+        </div>
+    </div>
+</div>
